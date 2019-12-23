@@ -1,4 +1,5 @@
 # py23
+![](https://github.com/vb64/py23/workflows/Py23/badge.svg)
 Python 2/3 compatible functions
 
 ## Installation
