@@ -1,7 +1,5 @@
 flake8
-pylint
-coverage
 twine
-coveralls
 wheel
 pytest
+pytest-cov

@@ -4,20 +4,22 @@
 ifeq ($(OS),Windows_NT)
 PYTHON = venv/Scripts/python.exe
 PYTEST = venv/Scripts/pytest.exe
+COVERAGE = venv/Scripts/coverage.exe
 else
 PYTHON = ./venv/bin/python
 PYTEST = ./venv/bin/pytest
+COVERAGE = ./venv/bin/coverage
 endif
 
 SOURCE = py23
 TESTS = tests
-COVERAGE = $(PYTHON) -m coverage
 PIP = $(PYTHON) -m pip install
 
 all: tests
 
 tests: flake8
-	$(PYTEST)
+	$(PYTEST) --cov=$(SOURCE)
+	$(COVERAGE) html --skip-covered
 
 flake8:
 	$(PYTHON) -m flake8 --max-line-length=120 $(SOURCE)
