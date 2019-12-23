@@ -4,6 +4,10 @@ Python 2/3 compatible functions
 
 ## Installation
 
+```
+$ pip install py23
+```
+
 ## Usage
 
 ```python
