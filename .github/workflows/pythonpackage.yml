@@ -1,4 +1,4 @@
-name: Python package
+name: Py23
 
 on: [push]
 
