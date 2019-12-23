@@ -1,10 +1,12 @@
-.PHONY: all setup
+.PHONY: all setup setup2 tests
 # make tests >debug.log 2>&1
 
 ifeq ($(OS),Windows_NT)
 PYTHON = venv/Scripts/python.exe
+PYTEST = venv/Scripts/pytest.exe
 else
 PYTHON = ./venv/bin/python
+PYTEST = ./venv/bin/pytest
 endif
 
 SOURCE = py23
@@ -12,13 +14,13 @@ TESTS = tests
 COVERAGE = $(PYTHON) -m coverage
 PIP = $(PYTHON) -m pip install
 
-all:
+all: tests
+
+tests: flake8
+	$(PYTEST)
 
 flake8:
 	$(PYTHON) -m flake8 --max-line-length=120 $(SOURCE)
-
-lint:
-	$(PYTHON) -m pylint $(SOURCE)
 
 setup2: setup_python2 setup_pip
 

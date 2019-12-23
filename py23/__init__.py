@@ -20,7 +20,7 @@ def load_module_by_path(path):
     """
     # construct package name from module file path
     # drop file path specific symbols
-    name = remove_symbols(text, '/\\:.')
+    name = remove_symbols(path, '/\\:.')
 
     try:  # Python 3.5+
         import importlib.util
