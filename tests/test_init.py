@@ -17,13 +17,6 @@ def test_load_module_by_path():
     assert callable(load_module_by_path(os.path.join('py23', '__init__.py')).remove_symbols)
 
 
-def test_win1251():
-    """Check win1251 function."""
-    from py23 import win1251
-
-    assert win1251(u'test') == 'test'
-
-
 def test_open_text_file():
     """Check win1251 function."""
     from py23 import open_text_file
