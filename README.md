@@ -1,4 +1,4 @@
-![](https://github.com/vb64/py23/workflows/Py23/badge.svg)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vb64/py23/Py23?label=Python%202.7%203.6%203.7%203.8%203.9%203.10&style=plastic)](https://github.com/vb64/py23/actions?query=workflow%3A%22Py23%22)
 # py23
 Python 2/3 compatible functions
 
