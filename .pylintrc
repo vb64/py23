@@ -15,7 +15,7 @@ ignore=CVS
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-init-hook=from tests.conftest import path_setup; path_setup()
+init-hook=
 
 # Use multiple processes to speed up Pylint.
 jobs=1
@@ -136,6 +136,7 @@ disable=print-statement,
         bad-option-value,
         deprecated-method,
         deprecated-module,
+        no-member,
         consider-using-with
 
 # Enable the message, report, category or checker with the given id(s). You can
