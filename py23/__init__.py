@@ -30,7 +30,7 @@ def load_module_by_path(path):
     except ImportError:  # Python 3.4 3.3
         try:
             from importlib.machinery import SourceFileLoader
-            py_module = SourceFileLoader(name, path).load_module()
+            py_module = SourceFileLoader(name, path).load_module()  # pylint: disable=no-value-for-parameter
         except ImportError:  # Python 2
             import imp
             py_module = imp.load_source(name, path)
