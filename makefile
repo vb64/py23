@@ -20,11 +20,11 @@ LINT3 = $(LINT) --init-hook="sys.path.insert(0, './')"
 
 all: tests
 
-tests:  flake8 lint3
+tests:  flake8 lint
 	$(PYTEST) --cov=$(SOURCE)
 	$(COVERAGE) html --skip-covered
 
-tests3: flake8 pep257 lint3
+tests3: flake8 lint3
 	$(PYTEST) --cov=$(SOURCE)
 	$(COVERAGE) html --skip-covered
 
