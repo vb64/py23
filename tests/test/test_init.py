@@ -1,6 +1,5 @@
 """Tests __init__.py module."""
 import os
-import pytest
 
 
 def test_remove_symbols():

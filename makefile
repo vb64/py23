@@ -1,6 +1,5 @@
-.PHONY: all setup setup2 tests
+.PHONY: all setup setup2 package pypitest pypi
 # make tests >debug.log 2>&1
-
 ifeq ($(OS),Windows_NT)
 PYTHON = venv/Scripts/python.exe
 PTEST = venv/Scripts/pytest.exe
@@ -13,50 +12,54 @@ endif
 
 SOURCE = py23
 TESTS = tests
-PIP = $(PYTHON) -m pip install
+
+FLAKE8 = $(PYTHON) -m flake8 --max-line-length=120
+PYLINT = $(PYTHON) -m pylint
 PYTEST = $(PTEST) --cov=$(SOURCE) --cov-report term:skip-covered
-LINT = $(PYTHON) -m pylint
-LINT3 = $(LINT) --init-hook="sys.path.insert(0, './')"
+PIP = $(PYTHON) -m pip install
 
 all: tests
 
-tests:  flake8 lint
-	$(PYTEST) --cov=$(SOURCE)
-	$(COVERAGE) html --skip-covered
-
-tests3: flake8 lint3
-	$(PYTEST) --cov=$(SOURCE)
-	$(COVERAGE) html --skip-covered
+test:
+	$(PTEST) -s $(TESTS)/test/$(T)
 
 flake8:
-	$(PYTHON) -m flake8 --max-line-length=120 $(SOURCE)
+	$(FLAKE8) $(SOURCE)
+	$(FLAKE8) $(TESTS)/test
 
 lint:
-	$(LINT) $(SOURCE)
+	$(PYLINT) $(TESTS)/test
+	$(PYLINT) $(SOURCE)
 
-lint3:
-	$(LINT3) $(SOURCE)
+pep257:
+	$(PYTHON) -m pep257 $(SOURCE)
+	$(PYTHON) -m pep257 --match='.*\.py' $(TESTS)/test
 
-dist:
-	$(PYTHON) setup.py sdist bdist_wheel
+tests: flake8 pep257 lint
+	$(PYTEST) --durations=5 $(TESTS)
+	$(COVERAGE) html --skip-covered
 
-upload_piptest: tests dist
-	$(PYTHON) -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+package:
+	$(PYTHON) -m build -n
 
-upload_pip: tests dist
-	$(PYTHON) -m twine upload dist/*
+pypitest: package
+	$(PYTHON) -m twine upload --config-file .pypirc --repository testpypi dist/*
 
-setup: setup_python2 setup_pip
+pypi: package
+	$(PYTHON) -m twine upload --config-file .pypirc dist/*
 
-setup3: setup_python3 setup_pip
+setup: setup_python setup_pip
+
+setup2: setup_python2 setup_pip2
 
 setup_pip:
 	$(PIP) --upgrade pip
+	$(PIP) -r $(TESTS)/requirements.txt
 	$(PIP) -r deploy.txt
-	$(PIP) -r tests/requirements.txt
 
-setup_python3:
+setup_python:
 	$(PYTHON_BIN) -m venv ./venv
 
 setup_python2:
+	$(PYTHON_BIN) -m pip install virtualenv
 	$(PYTHON_BIN) -m virtualenv ./venv

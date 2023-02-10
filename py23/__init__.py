@@ -1,12 +1,8 @@
-"""
-Python 2/3 compatible functions
-"""
+"""Python 2/3 compatible functions."""
 
 
 def remove_symbols(text, symbols):
-    """
-    remove from string given symbols
-    """
+    """Remove from string given symbols."""
     for symbol in symbols:
         text = text.replace(symbol, '')
 
@@ -14,8 +10,8 @@ def remove_symbols(text, symbols):
 
 
 def load_module_by_path(path):
-    """
-    load py module by file path
+    """Load py module by file path.
+
     https://stackoverflow.com/questions/67631/how-to-import-a-module-given-the-full-path
     """
     # construct package name from module file path
@@ -30,7 +26,9 @@ def load_module_by_path(path):
     except ImportError:  # Python 3.4 3.3
         try:
             from importlib.machinery import SourceFileLoader
-            py_module = SourceFileLoader(name, path).load_module()  # pylint: disable=no-value-for-parameter
+            py_module = SourceFileLoader(  # pylint: disable=no-value-for-parameter,deprecated-method
+              name, path
+            ).load_module()
         except ImportError:  # Python 2
             import imp
             py_module = imp.load_source(name, path)
@@ -76,7 +74,7 @@ def gen_next(generator):
         return generator.next()
     except AttributeError:  # pragma: no cover
         # Python 3.5+
-        return generator.__next__()
+        return generator.__next__()  # pylint: disable=unnecessary-dunder-call
 
 
 def open_text_file(file_path, mode, encoding):

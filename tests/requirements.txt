@@ -2,4 +2,5 @@ flake8
 pylint
 pep257
 pytest
+codacy-coverage
 pytest-cov
