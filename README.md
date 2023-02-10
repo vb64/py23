@@ -30,12 +30,10 @@ $ cd py23
 With Python 3:
 ```
 $ make setup PYTHON_BIN=/path/to/python3
+$ make tests
 ```
 With Python 2:
 ```
 $ make setup2 PYTHON_BIN=/path/to/python2
-```
-Run autotests
-```
-$ make tests
+$ make tests2
 ```

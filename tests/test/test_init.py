@@ -55,7 +55,7 @@ def test_super23():
     """Check super23 function."""
     from py23 import super23
 
-    class ClassA(object):  # pylint: disable=useless-object-inheritance
+    class ClassA(object):
         """Base class."""
 
         def __init__(self):
