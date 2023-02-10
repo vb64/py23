@@ -41,10 +41,5 @@ jobs:
         python -m pylint tests/test
 
     - name: pytest
-      env:
-        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       run: |
         pytest --cov=py23 --cov-report xml --cov-report term:skip-covered --durations=5 tests
-        if [ "$CODACY_PROJECT_TOKEN" != "" ]; then
-          python-codacy-coverage -r coverage.xml
-        fi
