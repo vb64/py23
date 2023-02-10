@@ -1,5 +1,6 @@
 # Library py23
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vb64/py23/Py23?label=Python%202.7%203.6%203.7%203.8%203.9%203.10&style=plastic)](https://github.com/vb64/py23/actions?query=workflow%3A%22Py23%22)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vb64/py23/pep257.yml?label=Pep257&style=plastic&branch=main)](https://github.com/vb64/py23/actions?query=workflow%3Apep257)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vb64/py23/py3.yml?label=Python%203.7-3.10&style=plastic&branch=main)](https://github.com/vb64/py23/actions?query=workflow%3Apy3)
 
 Python 2/3 compatible functions
 
