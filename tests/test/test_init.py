@@ -28,3 +28,24 @@ def test_gen_next():
     from py23 import gen_next
 
     assert gen_next((i for i in range(2))) is not None
+
+
+def test_win1251():
+    """Check win1251 function."""
+    from py23 import win1251
+
+    assert win1251("xxx").decode('utf8') == "xxx"
+
+
+def test_is_contains():
+    """Check is_contains function."""
+    from py23 import is_contains
+
+    assert is_contains("xxxyyxxx", "yy")
+
+
+def test_replace1251():
+    """Check replace1251 function."""
+    from py23 import replace1251
+
+    assert replace1251("xyyx", "yy", "zz").decode('utf8') == "xzzx"
