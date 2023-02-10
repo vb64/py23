@@ -89,6 +89,9 @@ def open_text_file(file_path, mode, encoding):
 
 
 def super23(self):
-    """Class super."""
-    # https://stackoverflow.com/questions/43778914/python3-using-super-in-eq-methods-raises-runtimeerror-super-class
+    """Class super. In py2 works with new-style classes (object).
+
+    https://stackoverflow.com/questions/43778914/python3-using-super-in-eq-methods-raises-runtimeerror-super-class
+    https://stackoverflow.com/questions/1713038/super-fails-with-error-typeerror-argument-1-must-be-type-not-classobj-when
+    """
     return super(self.__class__, self)
