@@ -57,6 +57,10 @@ setup_pip:
 	$(PIP) -r $(TESTS)/requirements.txt
 	$(PIP) -r deploy.txt
 
+setup_pip2:
+	$(PIP) --upgrade pip
+	$(PIP) -r $(TESTS)/requirements.txt
+
 setup_python:
 	$(PYTHON_BIN) -m venv ./venv
 
