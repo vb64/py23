@@ -86,3 +86,9 @@ def open_text_file(file_path, mode, encoding):
         fhandle = open(file_path, mode + 'b')
 
     return fhandle
+
+
+def super23(self):
+    """Class super."""
+    # https://stackoverflow.com/questions/43778914/python3-using-super-in-eq-methods-raises-runtimeerror-super-class
+    return super(self.__class__, self)
