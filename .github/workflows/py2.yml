@@ -37,8 +37,8 @@ jobs:
 
     - name: pylint
       run: |
-        python -m pylint py23
-        python -m pylint tests/test
+        python -m pylint --rcfile .pylintrc2 py23
+        python -m pylint --rcfile .pylintrc2 tests/test
 
     - name: pytest
       run: |

@@ -4,8 +4,7 @@ __pycache__
 *.log
 .coverage
 htmlcov/*
-venv/*
-venv.*
+venv*
 build/
 dist/
 *.egg-info/

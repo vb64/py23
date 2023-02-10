@@ -1,4 +1,4 @@
-.PHONY: all setup setup2 package pypitest pypi
+.PHONY: all setup setup2 package pypitest pypi tests tests2
 # make tests >debug.log 2>&1
 ifeq ($(OS),Windows_NT)
 PYTHON = venv/Scripts/python.exe
@@ -15,6 +15,7 @@ TESTS = tests
 
 FLAKE8 = $(PYTHON) -m flake8 --max-line-length=120
 PYLINT = $(PYTHON) -m pylint
+PYLINT2 = $(PYLINT) --rcfile .pylintrc2
 PYTEST = $(PTEST) --cov=$(SOURCE) --cov-report term:skip-covered
 PIP = $(PYTHON) -m pip install
 
@@ -31,11 +32,19 @@ lint:
 	$(PYLINT) $(TESTS)/test
 	$(PYLINT) $(SOURCE)
 
+lint2:
+	$(PYLINT2) $(TESTS)/test
+	$(PYLINT2) $(SOURCE)
+
 pep257:
 	$(PYTHON) -m pep257 $(SOURCE)
 	$(PYTHON) -m pep257 --match='.*\.py' $(TESTS)/test
 
 tests: flake8 pep257 lint
+	$(PYTEST) --durations=5 $(TESTS)
+	$(COVERAGE) html --skip-covered
+
+tests2: flake8 pep257 lint2
 	$(PYTEST) --durations=5 $(TESTS)
 	$(COVERAGE) html --skip-covered
 

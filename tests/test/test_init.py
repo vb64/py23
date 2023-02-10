@@ -49,3 +49,25 @@ def test_replace1251():
     from py23 import replace1251
 
     assert replace1251("xyyx", "yy", "zz").decode('utf8') == "xzzx"
+
+
+def test_super23():
+    """Check super23 function."""
+    from py23 import super23
+
+    class ClassA(object):
+        """Base class."""
+
+        def __init__(self):
+            """Make instance."""
+            self.name = "class A"
+
+    class ClassB(ClassA):
+        """Child class."""
+
+        def __init__(self):
+            """Make child instance."""
+            super23(self).__init__()
+            self.child_name = "class B"
+
+    assert ClassB().name == "class A"
