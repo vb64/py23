@@ -1,0 +1,9 @@
+10.02.2022 ver.1.1
+------------------
+
++ open_text_file, generator, encoding
+
+23.12.2019 ver.1.0
+------------------
+
++ load_module_by_path
