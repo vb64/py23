@@ -34,7 +34,7 @@ def test_win1251():
     """Check win1251 function."""
     from py23 import win1251
 
-    assert win1251("xxx") == "xxx"
+    assert win1251("xxx").decode('utf8') == "xxx"
 
 
 def test_is_contains():
@@ -48,4 +48,4 @@ def test_replace1251():
     """Check replace1251 function."""
     from py23 import replace1251
 
-    assert replace1251("xyyx", "yy", "zz") == "xzzx"
+    assert replace1251("xyyx", "yy", "zz").decode('utf8') == "xzzx"
