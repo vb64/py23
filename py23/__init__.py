@@ -20,8 +20,8 @@ def load_module_by_path(path):
 
     try:  # Python 3.5+
         import importlib.util
-        spec = importlib.util.spec_from_file_location(name, path)
-        py_module = importlib.util.module_from_spec(spec)
+        spec = importlib.util.spec_from_file_location(name, path)  # pylint: disable=no-member
+        py_module = importlib.util.module_from_spec(spec)  # pylint: disable=no-member
         spec.loader.exec_module(py_module)
     except ImportError:  # Python 3.4 3.3
         try:
@@ -74,7 +74,7 @@ def gen_next(generator):
         return generator.next()
     except AttributeError:  # pragma: no cover
         # Python 3.5+
-        return generator.__next__()  # pylint: disable=unnecessary-dunder-call
+        return generator.__next__()
 
 
 def open_text_file(file_path, mode, encoding):
@@ -83,6 +83,6 @@ def open_text_file(file_path, mode, encoding):
         fhandle = open(file_path, mode + 't', encoding=encoding)
     except TypeError:  # pragma: no cover
         # Python 2
-        fhandle = open(file_path, mode + 'b')  # pylint: disable=unspecified-encoding
+        fhandle = open(file_path, mode + 'b')
 
     return fhandle
